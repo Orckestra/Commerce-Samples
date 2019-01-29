@@ -179,7 +179,7 @@
                             "method": "GET",
                             "uri": "https://ocscm.int.platform.orckestra.cloud:443/api/orders/@{body('ParseMessageJSON')?['scopeId']}/@{body('ParseMessageJSON')?['orderId']}?IncludeLineItems=false&IncludePayment=false&IncludeShipment=false",
                             "headers": {
-                              "X-Auth": "Otlou2jI7qF6gGfvcEe1lqDzDDVkBmcAEl0l12hM6OKG4GFHUoiiwYH8olNrOmRMfXzaFY5CQ7GE7fSKqKA8UQ=="
+                              "X-Auth": "Authentication Token Here"
                             }
                           },
                           "runAfter": {}
@@ -208,7 +208,7 @@
                         },
                         "ComposeCustomerMessage": {
                           "type": "Compose",
-                          "inputs": "Dear @{body('ParseOrderDetails')?['customerName']} , your order from BetterRetail number@{body('ParseOrderDetails')?['orderNumber']} is on the way!",
+                          "inputs": "Dear @{body('ParseOrderDetails')?['customerName']} , your order from BetterRetail number @{body('ParseOrderDetails')?['orderNumber']} is on the way!",
                           "runAfter": {
                             "ParseOrderDetails": [
                               "Succeeded"
@@ -441,7 +441,7 @@
                   }
                 },
                 "method": "get",
-                "path": "/@{encodeURIComponent(encodeURIComponent('occintapp0_events'))}/subscriptions/@{encodeURIComponent('Twillio')}/messages/head",
+                "path": "/@{encodeURIComponent(encodeURIComponent('events'))}/subscriptions/@{encodeURIComponent('Twillio')}/messages/head",
                 "queries": {
                   "subscriptionType": "Main"
                 }

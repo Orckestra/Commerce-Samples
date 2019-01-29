@@ -6,13 +6,13 @@
       "value": "TwillioIntegration"
     },
     "servicebus_1_connectionString": {
-      "value": "i7LgY5BFBWMFK6rry2ZWX7pjXsWFk43PQs4EF/AhYxs="
+      "value": ""
     },
     "twilio_1_sid": {
-      "value": "AC8596c99980dddb13342af3c69569b726"
+      "value": ""
     },
     "twilio_1_token": {
-      "value": "1f701e67329528cf74931645ff4d4f2c"
+      "value": ""
     }
   }
 }
