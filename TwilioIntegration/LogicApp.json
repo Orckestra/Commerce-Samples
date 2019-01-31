@@ -208,7 +208,7 @@
                         },
                         "ComposeCustomerMessage": {
                           "type": "Compose",
-                          "inputs": "Dear @{body('ParseOrderDetails')?['customerName']} , your order from BetterRetail number @{body('ParseOrderDetails')?['orderNumber']} is on the way!",
+                          "inputs": "Dear @{body('ParseOrderDetails')?['customerName']} , your order  @{body('ParseOrderDetails')?['orderNumber']} placed with BetterRetail on @{body('ParseOrderDetails')?['created']} has been shipped. You will soon receive a tracking number. For more details click here: https://yourstoreURL/order?number=@{body('ParseOrderDetails')?['orderNumber']}",
                           "runAfter": {
                             "ParseOrderDetails": [
                               "Succeeded"
@@ -458,23 +458,23 @@
         "parameters": {
           "$connections": {
             "value": {
-              "servicebus": {
-                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'servicebus')]",
-                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('servicebus_1_Connection_Name'))]",
-                "connectionName": "[parameters('servicebus_1_Connection_Name')]"
-              },
               "twilio": {
                 "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'twilio')]",
                 "connectionId": "[resourceId('Microsoft.Web/connections', parameters('twilio_1_Connection_Name'))]",
                 "connectionName": "[parameters('twilio_1_Connection_Name')]"
+              },
+              "servicebus": {
+                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'servicebus')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('servicebus_1_Connection_Name'))]",
+                "connectionName": "[parameters('servicebus_1_Connection_Name')]"
               }
             }
           }
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/connections', parameters('servicebus_1_Connection_Name'))]",
-        "[resourceId('Microsoft.Web/connections', parameters('twilio_1_Connection_Name'))]"
+        "[resourceId('Microsoft.Web/connections', parameters('twilio_1_Connection_Name'))]",
+        "[resourceId('Microsoft.Web/connections', parameters('servicebus_1_Connection_Name'))]"
       ]
     },
     {
