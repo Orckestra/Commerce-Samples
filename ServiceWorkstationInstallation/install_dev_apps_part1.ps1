@@ -9,6 +9,7 @@ param (
 
 
 # Install Chocolatey
+Set-ExecutionPolicy Bypass -Scope Process -Force 
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Install browsers
@@ -34,7 +35,7 @@ choco install sql-server-management-studio -y
 choco install sql-server-2017 --params="'/FEATURES:FullText'" -y
 
 # Install Visual Studio and its workloads
-choco install visualstudio2017enterprise --params "--add Microsoft.VisualStudio.Workload.Azure --add Microsoft.VisualStudio.Workload.NetWeb --add Microsoft.VisualStudio.Workload.Node --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Microsoft.VisualStudio.Workload.Office --add Microsoft.VisualStudio.Workload.NativeDesktop --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --includeRecommended" -y
+choco install visualstudio2017enterprise --params "--add Microsoft.VisualStudio.Workload.Azure --add Microsoft.VisualStudio.Workload.NetWeb --add Microsoft.VisualStudio.Workload.Node --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Microsoft.VisualStudio.Workload.Office --add Microsoft.VisualStudio.Workload.NativeDesktop --add Microsoft.VisualStudio.Workload.WebBuildTools --add Microsoft.VisualStudio.Component.VC.140 --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --includeRecommended" -y
 
 # Build.ps1 uses MsBuild 14.0 at the moment
 # This is needed to update the MsBuild 14.0 that comes with VS2017
@@ -122,11 +123,11 @@ $workingDir = (split-path -Path $MyInvocation.MyCommand.Path)
 
 if(![string]::IsNullOrEmpty($projectScript))
 {
-	set-itemproperty $RunOnceKey "NextRun" ("C:\Windows\System32\WindowsPowerShell\v1.0\Powershell.exe -executionPolicy Unrestricted -File $($workingDir)install_dev_apps_part2.ps1  -projectScript $($projectScript)")
+	set-itemproperty $RunOnceKey "NextRun" ("C:\Windows\System32\cmd.exe /C `"powershell -Command `"Start-Process PowerShell -Verb RunAs -ArgumentList '-File','$($workingDir)install_dev_apps_part2.ps1','-projectScript','$($projectScript)'`"`"")
 }
 else
 {
-	set-itemproperty $RunOnceKey "NextRun" ("C:\Windows\System32\WindowsPowerShell\v1.0\Powershell.exe -executionPolicy Unrestricted -File $($workingDir)install_dev_apps_part2.ps1")
+	set-itemproperty $RunOnceKey "NextRun" ("C:\Windows\System32\cmd.exe /C `"powershell -Command `"Start-Process PowerShell -Verb RunAs -ArgumentList '-File','$($workingDir)install_dev_apps_part2.ps1'`"`"")
 }
 #Reboot
 Restart-Computer

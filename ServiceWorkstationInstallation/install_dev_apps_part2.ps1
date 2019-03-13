@@ -7,6 +7,9 @@ param (
 	[string]$projectScript
 )
 
+$workingDir = (split-path -Path $MyInvocation.MyCommand.Path)
+cd $workingDir
+
 # Install npm packages
 npm install -g npm
 npm install -g gulp-cli
@@ -19,6 +22,5 @@ net start SQLSERVERAGENT
 
 if(![string]::IsNullOrEmpty($projectScript))
 {
-	$workingDir = (split-path -Path $MyInvocation.MyCommand.Path)
-	Invoke-Expression -Command "$($workingDir)$($projectScript)"
+	Invoke-Expression -Command "$($projectScript)"
 }
