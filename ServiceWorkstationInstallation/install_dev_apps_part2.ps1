@@ -22,5 +22,5 @@ net start SQLSERVERAGENT
 
 if(![string]::IsNullOrEmpty($projectScript))
 {
-	Invoke-Expression -Command "$($projectScript)"
+	Invoke-Expression -Command "$($workingDir)$($projectScript)"
 }
