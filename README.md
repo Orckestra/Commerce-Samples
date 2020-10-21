@@ -16,6 +16,7 @@ There are three powershell (.ps1) scripts located in the ~/ServiceWorkstationIns
 These are scripts that should install all programs, licenses, and extensions necessary to start developing locally with the OCC.
 
 #### install-project.ps1 
+
 This is a powershell script that is meant to be configured by a Tech Lead, then pushed to the main client repo for development. It covers the following items:
 
 - git clone
@@ -29,4 +30,4 @@ This is a powershell script that is meant to be configured by a Tech Lead, then 
 
 ### PowerShell Installation
 
-For more information on the installation, please see the Developer Portal link here.
+For more information on the installation, please see the [Setting Up Your Developer Environment](https://docs.orckestra.com/developer-documentation/getting-started/developer-environment-setup) section under the Orckestra Developer Portal.
