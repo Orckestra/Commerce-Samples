@@ -20,7 +20,7 @@ These are scripts that should install all programs, licenses, and extensions nec
 This is a powershell script that is meant to be configured by a Tech Lead, then pushed to the main client repo for development. It covers the following items:
 
 - git clone
-- develop brnach checkout
+- develop branch checkout
 - MSBuild process
 - npm install
 - gulp build
